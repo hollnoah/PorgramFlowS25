@@ -38,25 +38,54 @@ Module ProgramFlowS25
         'Console.WriteLine()
 
         Dim firstNumber As Integer
+        Dim secondNumber As Integer
         Dim getOutOfHere As Boolean = False
         Dim userInput As String
 
 
         Do
+            'first loop
             Console.WriteLine("Enter a whole number")
             Console.WriteLine("Enter Q to quit")
             userInput = Console.ReadLine()
-            ' Console.WriteLine($"You entered {userInput}")
+            Console.WriteLine($"You entered {userInput}")
             Try
                 firstNumber = CInt(userInput)
+                getOutOfHere = True
 
             Catch ex As Exception
                 If userInput <> "Q" Then
-                    Console.WriteLine("No no no," & $"{userInput} is not a whole number, please enter a whole number")
+                    Console.WriteLine("No no no," & $" {userInput} is not a whole number")
+                Else
+                    getOutOfHere = True
                 End If
             End Try
+        Loop Until getOutOfHere = True
 
-        Loop While userInput <> "Q"
+        'second loop
+        getOutOfHere = False 'reset flag
+        Do While userInput <> "Q" And getOutOfHere = False
+
+            Console.WriteLine("Enter another whole number")
+            Console.WriteLine("Enter Q to quit")
+            userInput = Console.ReadLine()
+            Console.WriteLine($"You entered {userInput}")
+            Try
+                secondNumber = CInt(userInput)
+                getOutOfHere = True
+
+            Catch ex As Exception
+                If userInput <> "Q" Then
+                    Console.WriteLine("No no no," & $" {userInput} is not a whole number")
+                Else
+                    getOutOfHere = True
+                End If
+            End Try
+        Loop
+
+
+
+
 
     End Sub
 
